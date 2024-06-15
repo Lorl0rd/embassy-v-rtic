@@ -48,21 +48,22 @@ async fn blink_red(shared: &'static MutRefShared) -> ! {
 }
 
 #[task]
-async fn blink_green(shared: &'static MutRefShared) -> ! {
+async fn blink_yellow(shared: &'static MutRefShared) -> ! {
     loop {
         shared.lock(|cell| {
-            cell.borrow_mut().green.toggle();
+            cell.borrow_mut().yellow.toggle();
         });
         Timer::after_millis(500).await;
     }
 }
 
 #[task]
-async fn blink_yellow(shared: &'static MutRefShared) -> ! {
+async fn blink_green(shared: &'static MutRefShared) -> ! {
     loop {
         shared.lock(|cell| {
-            cell.borrow_mut().yellow.toggle();
+            cell.borrow_mut().green.toggle();
         });
         Timer::after_millis(1000).await;
     }
 }
+
